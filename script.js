@@ -3,19 +3,18 @@ const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth * 0.75;
 canvas.height = window.innerHeight * 0.85;
 
-const numberOfNumbers = 30;
+const numberOfNumbers = 50;
 let ticks = 0;
-const speed = 100;
+const speed = 10;
 const array = [];
 const arrayOfRectangles = [];
-let isSorted = false;
 
 function Rectangle(value, i) {
     this.colour = "black";
     this.value = value;
     this.x = (canvas.width/numberOfNumbers) * i;
     this.y = 0;
-    this.width = canvas.width/numberOfNumbers;
+    this.width = (canvas.width/numberOfNumbers) * 0.95;
     this.height = (canvas.height/numberOfNumbers) * value;
 
     this.changeValue = (v) => {
@@ -51,8 +50,6 @@ function PopulateArrayOfRectangles() {
 
 function BubbleSort() {
     if(array[ticks] > array[ticks + 1]) {
-        isSorted = false;
-        //console.log(array[ticks]);
         let temp = array[ticks];
         array[ticks] = array[ticks+1];
         array[ticks+1] = temp;
@@ -66,7 +63,6 @@ function BubbleSort() {
 }
 
 function animate() {
-    isSorted = true;
     if(ticks < array.length - 1) {
         setTimeout(() => {
             BubbleSort();
