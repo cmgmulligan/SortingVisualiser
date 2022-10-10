@@ -8,7 +8,7 @@ let ticks = 0;
 const speed = 100;
 const array = [];
 const arrayOfRectangles = [];
-//let isSorted = true;
+let isSorted = false;
 
 function Rectangle(value, i) {
     this.colour = "black";
@@ -50,9 +50,8 @@ function PopulateArrayOfRectangles() {
 }
 
 function BubbleSort() {
-    //isSorted = true;
     if(array[ticks] > array[ticks + 1]) {
-        //isSorted = false;
+        isSorted = false;
         //console.log(array[ticks]);
         let temp = array[ticks];
         array[ticks] = array[ticks+1];
@@ -67,11 +66,16 @@ function BubbleSort() {
 }
 
 function animate() {
+    isSorted = true;
     if(ticks < array.length - 1) {
         setTimeout(() => {
             BubbleSort();
             animate();
         }, speed)
+    }
+    else {
+        ticks = 0;
+        animate();
     }
 }
 /*
@@ -83,18 +87,16 @@ async function animate() {
 }
 
 function animate() {
-    do {
         if(ticks < array.length - 1) {
             setTimeout(() => {
                 BubbleSort();
                 animate();
-            }, speed)
+            }, speed);
         } else {
             ticks = 0;
+            animate();
         }
-    }while (!isSorted);
 }
-
 */
 FillArray();
 RandomiseArray();
