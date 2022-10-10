@@ -96,6 +96,11 @@ function animate() {
         j = 0;
         animate();
     }
+    else{
+        arrayOfRectangles.forEach(e => e.changeColour('green'));
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        DrawAll(arrayOfRectangles);
+    }
 }
 
 FillArray();
