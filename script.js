@@ -6,9 +6,11 @@ canvas.height = window.innerHeight * 0.85;
 const numberOfNumbers = 50;
 let i = 0;
 let j = 0;
+let hasSwapped = false;
 const speed = 20;
 const array = [];
 const arrayOfRectangles = [];
+
 
 function Rectangle(value, i) {
     this.colour = "black";
@@ -66,10 +68,11 @@ function PopulateArrayOfRectangles() {
 
 function BubbleSort() {
     if(i > 0)arrayOfRectangles[array.length - i].changeColour('green');
-    if(j > 0) arrayOfRectangles[j-1].changeColour('black');
+    //if(j > 0) arrayOfRectangles[j-1].changeColour('black');
     if(array[j] > array[j + 1]) {
-        arrayOfRectangles[j].changeColour('red');
-        arrayOfRectangles[j+1].changeColour('red');
+        //arrayOfRectangles[j].changeColour('red');
+        //arrayOfRectangles[j+1].changeColour('red');
+        hasSwapped = true
 
         let temp = array[j];
         array[j] = array[j+1];
@@ -91,10 +94,13 @@ function animate() {
             animate();
         }, speed)
     }
-    else if(i <= array.length){
-        i++
-        j = 0;
-        animate();
+    else if(hasSwapped){
+        setTimeout(() => {
+            hasSwapped = false
+            i++
+            j = 0;
+            animate();
+        }, speed)
     }
     else{
         arrayOfRectangles.forEach(e => e.changeColour('green'));
