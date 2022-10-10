@@ -4,8 +4,9 @@ canvas.width = window.innerWidth * 0.75;
 canvas.height = window.innerHeight * 0.85;
 
 const numberOfNumbers = 50;
-let ticks = 0;
-const speed = 10;
+let i = 0;
+let j = 0;
+const speed = 15;
 const array = [];
 const arrayOfRectangles = [];
 
@@ -49,28 +50,29 @@ function PopulateArrayOfRectangles() {
 }
 
 function BubbleSort() {
-    if(array[ticks] > array[ticks + 1]) {
-        let temp = array[ticks];
-        array[ticks] = array[ticks+1];
-        array[ticks+1] = temp;
-        arrayOfRectangles[ticks].changeValue(array[ticks]);
-        arrayOfRectangles[ticks+1].changeValue(array[ticks+1]);
+    if(array[j] > array[j + 1]) {
+        let temp = array[j];
+        array[j] = array[j+1];
+        array[j+1] = temp;
+        arrayOfRectangles[j].changeValue(array[j]);
+        arrayOfRectangles[j+1].changeValue(array[j+1]);
 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         DrawAll(arrayOfRectangles);
     }
-    ticks++;
+    j++;
 }
 
 function animate() {
-    if(ticks < array.length - 1) {
+    if(j < array.length - i) {
         setTimeout(() => {
             BubbleSort();
             animate();
         }, speed)
     }
     else {
-        ticks = 0;
+        i++
+        j = 0;
         animate();
     }
 }
