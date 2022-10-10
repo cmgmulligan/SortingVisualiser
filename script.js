@@ -28,7 +28,7 @@ function Rectangle(value, i) {
     }
 
     this.drawRectangle = () => {
-        ctx.fillStyle.colour = this.colour;
+        ctx.fillStyle = this.colour;
         ctx.fillRect(this.x, this.y, this.width, this.height);
     }
 }
@@ -38,7 +38,7 @@ function FillArray() {
 }
 
 function RandomiseArray() {
-    array.sort((a,b) => (Math.random() > 0.5 ? 1 : -1));
+    array.sort(() => (Math.random() > 0.5 ? 1 : -1));
 }
 
 function DrawAll(rectangles) {
@@ -50,10 +50,16 @@ function PopulateArrayOfRectangles() {
 }
 
 function BubbleSort() {
+    if(i > 0)arrayOfRectangles[array.length - i].changeColour('green');
+    if(j > 0) arrayOfRectangles[j-1].changeColour('black');
     if(array[j] > array[j + 1]) {
+        arrayOfRectangles[j].changeColour('red');
+        arrayOfRectangles[j+1].changeColour('red');
+
         let temp = array[j];
         array[j] = array[j+1];
         array[j+1] = temp;
+
         arrayOfRectangles[j].changeValue(array[j]);
         arrayOfRectangles[j+1].changeValue(array[j+1]);
 
@@ -76,26 +82,7 @@ function animate() {
         animate();
     }
 }
-/*
-async function animate() {
-    if(ticks < array.length - 1) {
-        await setTimeout(BubbleSort(), speed * ticks);
-        animate();
-    }
-}
 
-function animate() {
-        if(ticks < array.length - 1) {
-            setTimeout(() => {
-                BubbleSort();
-                animate();
-            }, speed);
-        } else {
-            ticks = 0;
-            animate();
-        }
-}
-*/
 FillArray();
 RandomiseArray();
 PopulateArrayOfRectangles();
