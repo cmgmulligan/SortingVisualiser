@@ -6,12 +6,13 @@ canvas.height = window.innerHeight * 0.85;
 const numberOfNumbers = 50;
 let i = 0;
 let j = 0;
-const speed = 15;
+const speed = 20;
 const array = [];
 const arrayOfRectangles = [];
 
 function Rectangle(value, i) {
     this.colour = "black";
+    this.i = i
     this.value = value;
     this.x = (canvas.width/numberOfNumbers) * i;
     this.y = 0;
@@ -31,7 +32,21 @@ function Rectangle(value, i) {
         ctx.fillStyle = this.colour;
         ctx.fillRect(this.x, this.y, this.width, this.height);
     }
+
+    this.rectangleResize = () => {
+        this.x = (canvas.width/numberOfNumbers) * this.i;
+        this.width = (canvas.width/numberOfNumbers) * 0.95;
+        this.height = (canvas.height/numberOfNumbers) * this.value;
+    }
 }
+
+window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth * 0.75;
+    canvas.height = window.innerHeight * 0.85;
+    arrayOfRectangles.forEach(e => {
+        e.rectangleResize();
+    })
+});
 
 function FillArray() {
     for(let i = 1; i <= numberOfNumbers; i++) array.push(i);
@@ -76,7 +91,7 @@ function animate() {
             animate();
         }, speed)
     }
-    else {
+    else if(i <= array.length){
         i++
         j = 0;
         animate();
