@@ -67,7 +67,7 @@ function PopulateArrayOfRectangles() {
 }
 
 function BubbleSort() {
-    if(i > 0)arrayOfRectangles[array.length - i].changeColour('green');
+    if(i > j)arrayOfRectangles[array.length - i].changeColour('green');
     if(array[j] > array[j + 1]) {
         hasSwapped = true
 
