@@ -111,3 +111,4 @@ RandomiseArray();
 PopulateArrayOfRectangles();
 DrawAll(arrayOfRectangles);
 animate();
+console.log('changes are live');
